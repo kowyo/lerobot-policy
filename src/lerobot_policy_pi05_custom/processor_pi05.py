@@ -46,7 +46,9 @@ from lerobot.utils.constants import (
 )
 
 
-@ProcessorStepRegistry.register(name="pi05_custom_prepare_state_tokenizer_processor_step")
+@ProcessorStepRegistry.register(
+    name="pi05_custom_prepare_state_tokenizer_processor_step"
+)
 @dataclass
 class Pi05PrepareStateTokenizerProcessorStep(ProcessorStep):
     """

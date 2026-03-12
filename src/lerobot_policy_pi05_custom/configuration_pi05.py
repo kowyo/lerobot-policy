@@ -15,7 +15,6 @@
 # limitations under the License.
 
 from dataclasses import dataclass, field
-from typing import Optional
 
 from lerobot.configs.policies import PreTrainedConfig
 from lerobot.configs.types import FeatureType, NormalizationMode, PolicyFeature
@@ -82,7 +81,7 @@ class PI05Config(PreTrainedConfig):
     )
     compile_model: bool = False  # Whether to use torch.compile for model optimization
     compile_mode: str = "max-autotune"  # Torch compile mode
-    device: Optional[str] = None  # Device to use for the model (None = auto-detect)
+    device: str | None = None  # Device to use for the model (None = auto-detect)
 
     # Finetuning settings
     freeze_vision_encoder: bool = False  # Freeze only the vision encoder
