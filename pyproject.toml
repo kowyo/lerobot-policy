@@ -1,5 +1,5 @@
 [project]
-name = "pi05_custom"
+name = "lerobot_policy_pi05_custom"
 version = "0.1.0"
 description = "Custom pi0.5 policy for LeRobot"
 readme = "README.md"

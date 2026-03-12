@@ -27,9 +27,11 @@ from lerobot.utils.constants import ACTION, OBS_IMAGES, OBS_STATE
 DEFAULT_IMAGE_SIZE = 224
 
 
-@PreTrainedConfig.register_subclass("pi05")
+@PreTrainedConfig.register_subclass("pi05_custom")
 @dataclass
 class PI05Config(PreTrainedConfig):
+    push_to_hub: bool = False  # type: ignore[assignment]
+
     paligemma_variant: str = "gemma_2b"
     action_expert_variant: str = "gemma_300m"
     dtype: str = "float32"  # Options: "bfloat16", "float32"
