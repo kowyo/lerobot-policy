@@ -5,7 +5,14 @@ rm -rf outputs/pi05_training
 LOG_FILE="train_$(date +%Y%m%d_%H%M%S).log"
 echo "Logging to $LOG_FILE"
 
-uv run accelerate launch --multi_gpu --num_processes=4 .venv/bin/lerobot-train \
+source .venv/bin/activate
+
+uv run accelerate launch \
+    --multi_gpu \
+    --num_processes=4 \
+    --mixed_precision=bf16 \
+    --dynamo_backend=inductor \
+    $(which lerobot-train) \
     --dataset.repo_id=kowyo/plugin \
     --dataset.revision=main \
     --policy.type=pi05_custom \
@@ -19,6 +26,7 @@ uv run accelerate launch --multi_gpu --num_processes=4 .venv/bin/lerobot-train \
     --policy.freeze_vision_encoder=false \
     --policy.train_expert_only=true \
     --steps=20000 \
+    --policy.device=cuda \
     --batch_size=32 \
     --policy.push_to_hub=true \
     --policy.repo_id=kowyo/pi05-custom \
